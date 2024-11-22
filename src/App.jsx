@@ -1,9 +1,12 @@
+import LivePreview from "./components/LivePreview"
+import Form from "./components/Form"
 
 
 const App = () => {
   return (
-    <div className="bg-red-300 font-semibold">
-      hello world
+    <div className="flex justify-center items-center w-full bg-red-200 h-[120vh]">
+      <Form/>
+      <LivePreview/>
     </div>
   )
 }
