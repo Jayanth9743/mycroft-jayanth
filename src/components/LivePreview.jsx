@@ -1,26 +1,30 @@
 import { MdOutlineClear } from "react-icons/md";
-import img from "../assets/react.svg"
 import { IoMicOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { MainContext } from "../context/MainContext";
 
 const LivePreview = () => {
+
+  const {configData, downloadConfig} = useContext(MainContext);
+
   return (
-    <div className="flex justify-center flex-col shadow-2xl  items-center w-1/2 h-full">
+    <div className={`flex justify-center flex-col shadow-2xl  items-center w-1/2 h-full `} style={{ backgroundColor:configData.backgroundColor}}>
 
         <div className="flex justify-center mb-12 font-semibold items-center w-full gap-2">
           <p className="w-2 h-2 rounded-full bg-green-500"></p>
           <p>Live Preview</p>
         </div>
 
-        <div className="w-3/5 h-[60%] flex flex-col justify-between shadow-left-right shadow-xl items-center">
+        <div className="w-3/5 h-[60%] flex flex-col justify-between shadow-left-right shadow-xl items-center" style={{fontFamily:configData.fontFamily}}>
 
-            <div className="flex justify-between items-center rounded-t-xl w-full bg-[#E6391D] h-12">
-              <p className="ml-2 text-white font-medium">Greebo</p>
-              <MdOutlineClear className="text-white mr-2"/>
+            <div className={`flex justify-between items-center rounded-t-xl w-full h-12`} style={{ backgroundColor: configData.headerColor }}>
+              <p className={`ml-2 font-medium`} style={{color:configData.headerFontColor}}>{configData.botName}</p>
+              <MdOutlineClear style={{color:configData.headerFontColor}} className=" mr-2"/>
             </div>
 
-            <div className="flex w-full justify-around items-center mb-60 gap-2">
-              <img src={img} alt="" className="object-contain w-6 h-6 rounded-full" />
-              <p className="w-5/6 text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sequi a, dolorem quo culpa inventore aspernatur nam officiis.</p>
+            <div className="flex w-full justify-around items-center mb-64 gap-2">
+              <img src={configData.avatarImg} alt="" className="object-contain w-10 h-10 rounded-full" />
+              <p className={`w-5/6 text-start`} style={{color:configData.chatFontColor}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sequi a, dolorem quo culpa inventore aspernatur nam officiis.</p>
             </div>
 
             <div className="w-full rounded-b-xl shadow-md relative">
@@ -30,13 +34,13 @@ const LivePreview = () => {
 
         </div>
 
-        <div className="relative w-3/5 mb-12 h-12">
-          <img src={img} alt="" className="absolute top-0 right-0 object-contain w-12 h-12" />
+        <div className="flex justify-end items-start w-3/5 mb-12 h-16">
+          <img src={configData.launcherImg} alt="" className="object-contain rounded-b-lg w-16 h-16" />
         </div>
 
         <div className="flex justify-center items-center gap-2 w-full flex-col">
-          <button className="w-[10rem] h-[2.5rem] rounded-xl bg-black text-white">Download config</button>
-          <p>kdujfhsdf</p>
+          <button className="w-[10rem] h-[2.5rem] rounded-xl bg-black text-white" onClick={downloadConfig}>Download config</button>
+          <p>{configData.configName}</p>
         </div>
 
     </div>
